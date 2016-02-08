@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.1" name="com.braintreepayments.gateway.braintree-java">
+  <resources>
+    <resource-root path="braintree-java-2.53.0-javadoc.jar" />
+  </resources>
+  <dependencies />
+</module>
