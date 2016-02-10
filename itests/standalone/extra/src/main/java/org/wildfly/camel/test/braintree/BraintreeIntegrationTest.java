@@ -64,16 +64,16 @@ public class BraintreeIntegrationTest {
 
     @Deployment
     public static WebArchive deployment() {
-        File[] libraryDependencies = Maven.configureResolverViaPlugin().
-            resolve("co.freeside:betamax","org.codehaus.groovy:groovy-all")
+        File[] libraryDependencies = Maven.configureResolverViaPlugin()
+            .resolve("co.freeside:betamax","org.codehaus.groovy:groovy-all")
             .withTransitivity()
             .asFile();
 
-        final WebArchive archive = ShrinkWrap.create(WebArchive.class, "braintree-tests.war");
-        archive.addAsLibraries(libraryDependencies);
-        archive.addAsResource("betamax.properties","betamax.properties");
-        archive.addAsResource("braintree/braintree.properties","braintree.properties");
-        archive.setManifest(new Asset() {
+        return ShrinkWrap.create(WebArchive.class, "braintree-tests.war")
+            .addAsLibraries(libraryDependencies)
+            .addAsResource("betamax.properties","betamax.properties")
+            .addAsResource("braintree/braintree.properties","braintree.properties")
+            .setManifest(new Asset() {
             @Override
             public InputStream openStream() {
                 ManifestBuilder builder = new ManifestBuilder();
@@ -81,8 +81,6 @@ public class BraintreeIntegrationTest {
                 return builder.openStream();
             }
         });
-
-        return archive;
     }
 
     @Test
